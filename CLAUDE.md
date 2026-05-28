@@ -1,41 +1,41 @@
 # fpl-insights — CLAUDE.md
 
-## Šta je ovaj projekat
+## What this project is
 
-Personalni Fantasy Premier League data sloj. v1 cilj je *minimum koji vredi*: skinuti podatke iz FPL API-ja, smestiti ih u SQLite, servirati kroz FastAPI JSON endpointe. Bez analize, predikcija, bota i AI-ja u prvoj fazi.
+Personal Fantasy Premier League data layer. The v1 goal is *the minimum that's useful*: fetch data from the FPL API, store it in SQLite, and serve it through FastAPI JSON endpoints. No analysis, predictions, bot, or AI in the first phase.
 
-Nije public product. Lokalni run za jednog korisnika.
+Not a public product. Single-user, local-run.
 
 ---
 
-## Faze razvoja
+## Phases
 
-### Faza 1 — Pipeline + read API (TRENUTNA)
+### Phase 1 — Pipeline + read API (CURRENT)
 - FPL API → SQLite (`pipeline/`)
-- Read endpointi (`/api/players`, `/api/fixtures`, `/api/events`, `/api/teams`, ...)
+- Read endpoints (`/api/players`, `/api/fixtures`, `/api/events`, `/api/teams`, ...)
 - `/api/admin/update`, `/api/admin/status`, `/api/health`
 
-### Faza 2 — Predikcije
-- `models/player_model.py` (port iz starog repo-a, kalibrisan)
+### Phase 2 — Predictions
+- `models/player_model.py` (ported from the old repo, already calibrated)
 - `models/monte_carlo.py`
 - `services/prediction_service.py`
 - `/api/predictions/{gw}`, `/api/predictions/player/{id}/{gw}`
 
-### Faza 3 — Tim i lige
-- `services/team_service.py` — analiza mog tima (entry_id), captain advice
-- `services/league_service.py` — privatne lige, rivali, h2h
-- Endpointi: `/api/team/{entry_id}`, `/api/leagues`, `/api/rivals`
+### Phase 3 — Team and leagues
+- `services/team_service.py` — my-team analysis (entry_id), captain advice
+- `services/league_service.py` — private leagues, rivals, h2h
+- Endpoints: `/api/team/{entry_id}`, `/api/leagues`, `/api/rivals`
 
-### Faza 4 — Telegram bot
+### Phase 4 — Telegram bot
 - `/rank`, `/predictions`, `/team`, `/update`
 
-### Faza 5 — AI sloj (opcioni)
-- OpenAI advice za captain/transfer/free-hit
-- Mora ostati opcioni — core radi bez njega
+### Phase 5 — AI layer (optional)
+- OpenAI advice for captain/transfer/free-hit
+- Must stay optional — core works without it
 
 ---
 
-## Arhitektura
+## Architecture
 
 ```
 fpl-insights/
@@ -49,10 +49,10 @@ fpl-insights/
 │
 ├── fpl_insights/
 │   ├── __init__.py
-│   ├── config.py                 # putanje, URL-ovi, konstante
+│   ├── config.py                 # paths, URLs, constants
 │   ├── db/
-│   │   ├── sqlite.py             # schema, init, konekcija
-│   │   └── queries.py            # SVE read SQL — centralizovano
+│   │   ├── sqlite.py             # schema, init, connection
+│   │   └── queries.py            # ALL read SQL — centralized
 │   ├── pipeline/
 │   │   ├── fetch.py              # FPL API wrapper
 │   │   ├── normalize.py          # raw JSON → tuples
@@ -67,7 +67,7 @@ fpl-insights/
 │   │       └── admin.py          # /api/health, /admin/update, /admin/status
 │   └── utils/
 │       ├── http.py               # requests session + retry
-│       ├── logger.py             # centralni logger
+│       ├── logger.py             # central logger
 │       └── formatting.py         # POSITION_MAP, position_label
 │
 ├── scripts/
@@ -75,7 +75,7 @@ fpl-insights/
 │
 ├── tests/
 │   ├── conftest.py
-│   ├── fixtures/                 # fixture JSON za pipeline testove
+│   ├── fixtures/                 # fixture JSON for pipeline tests
 │   └── test_pipeline.py
 │
 └── data/                         # gitignored
@@ -85,43 +85,43 @@ fpl-insights/
 
 ---
 
-## Pravila i konvencije
+## Rules and conventions
 
-### Opšta
-- **Nikad ne dodavati feature koji nije tražen.** Pitati pre.
-- **Ne pisati komentare** osim ako logika nije očigledna (workaround, hidden constraint).
-- **Logging umesto print** — `utils/logger.py`.
-- **Sve SQL upite** držati u `db/queries.py`. Ništa van toga ne sme pisati SQL.
-- **API routeri** smeju zvati samo `db/queries.py` i `pipeline/update.py`. Bez biznis logike u routerima.
+### General
+- **Never add a feature that wasn't asked for.** Ask first.
+- **Don't write comments** unless the logic is non-obvious (workaround, hidden constraint).
+- **Logging instead of print** — use `utils/logger.py`.
+- **All SQL** lives in `db/queries.py`. Nothing outside it may write SQL.
+- **API routers** may only call `db/queries.py` and `pipeline/update.py`. No business logic in routers.
 
 ### Pipeline
-- `pipeline/` je stabilan — ne refaktorisati bez razloga.
-- Jedini ulaz za update je `pipeline.update.update_fpl_data()`.
+- `pipeline/` is stable — don't refactor without a reason.
+- The only entry point for an update is `pipeline.update.update_fpl_data()`.
 
-### Testovi
-- Ne mockati DB. Koristiti real SQLite (in-memory ili temp fajl).
-- Fetch može da se mockuje preko fixture JSON-a iz `tests/fixtures/`.
+### Tests
+- Don't mock the DB. Use real SQLite (in-memory or temp file).
+- Fetch may be mocked via fixture JSON in `tests/fixtures/`.
 
-### Šta NE radimo u v1
-- Bez `services/` sloja (vraća se u v2 sa predikcijama).
-- Bez `models/` (player model i MC dolaze u v2).
-- Bez AI, bota, panela.
-- Bez auth-a (lokalni run).
+### What we DON'T do in v1
+- No `services/` layer (returns in v2 with predictions).
+- No `models/` (player model and MC arrive in v2).
+- No AI, bot, or panel.
+- No auth (local-run only).
 
 ### Deployment
-- `.env` nikad u git.
-- `data/` i `fpl.db` nikad u git.
+- `.env` never in git.
+- `data/` and `fpl.db` never in git.
 
 ---
 
-## FPL API endpointi koje koristimo
+## FPL API endpoints we use
 
-Bez autentifikacije.
+No authentication required.
 - `/bootstrap-static/` — teams, players, events
-- `/fixtures/` — sve fixtures
+- `/fixtures/` — all fixtures
 - `/element-summary/{id}/` — per-player history + upcoming fixtures
 
-Sleep `0.1s` između player summary poziva (rate limit safety).
+Sleep `0.1s` between player-summary calls (rate-limit safety).
 
 ---
 
@@ -132,4 +132,4 @@ Sleep `0.1s` između player summary poziva (rate limit safety).
 - FastAPI + Uvicorn
 - Pydantic v2
 - requests
-- pytest + httpx (za API integration testove)
+- pytest + httpx (for API integration tests)

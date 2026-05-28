@@ -1,8 +1,8 @@
 # fpl-insights
 
-Personalni Fantasy Premier League data sloj. v1 cilj: skinuti podatke iz zvaničnog FPL API-ja, pohraniti ih u SQLite, i servirati ih kroz jednostavan FastAPI JSON interfejs.
+Personal Fantasy Premier League data layer. v1 goal: fetch data from the official FPL API, persist it to SQLite, and serve it through a simple FastAPI JSON interface.
 
-Bez predikcija, bez AI, bez bota — sve to dolazi u kasnijim fazama. Ovo je samo *fetch → store → serve*.
+No predictions, no AI, no bot — those come in later phases. This is just *fetch → store → serve*.
 
 ## Quickstart
 
@@ -15,44 +15,44 @@ python -m venv .venv
 # source .venv/bin/activate    # macOS/Linux
 
 pip install -r requirements.txt
-cp .env.example .env           # opcionalno, popuni FPL_ENTRY_ID kasnije
+cp .env.example .env           # optional, fill in FPL_ENTRY_ID later
 
-# Skini sve podatke (prvi run traje ~1-2 min jer ide kroz ~700 igrača)
+# Fetch all data (first run takes ~1-2 min — iterates over ~700 players)
 python -m scripts.update
 
-# Pokreni API
+# Run the API
 uvicorn fpl_insights.api.main:app --reload
 ```
 
-API je dostupan na `http://localhost:8000`, OpenAPI docs na `http://localhost:8000/docs`.
+API is available at `http://localhost:8000`, OpenAPI docs at `http://localhost:8000/docs`.
 
-## Endpointi (v1)
+## Endpoints (v1)
 
-| Method | Path | Šta vraća |
+| Method | Path | Returns |
 |---|---|---|
-| GET  | `/api/health` | Health + DB konekcija |
-| GET  | `/api/events` | Lista gameweek-ova |
-| GET  | `/api/teams`  | PL ekipe + strength rating |
-| GET  | `/api/players?position=MID&max_cost=10.0&limit=20` | Filtrirani igrači |
-| GET  | `/api/players/{id}` | Pun player snapshot |
-| GET  | `/api/players/{id}/history?last_n=5` | Per-GW istorija igrača |
-| GET  | `/api/fixtures?gw=15` | Fixtures za GW (ili sve) |
-| POST | `/api/admin/update` | Trigger pipeline u pozadini |
-| POST | `/api/admin/update/sync` | Sinhroni update, vraća rezultat |
-| GET  | `/api/admin/status` | Last update + broj redova po tabeli |
+| GET  | `/api/health` | Health + DB connectivity |
+| GET  | `/api/events` | Gameweek list |
+| GET  | `/api/teams`  | PL teams + strength rating |
+| GET  | `/api/players?position=MID&max_cost=10.0&limit=20` | Filtered player snapshot |
+| GET  | `/api/players/{id}` | Full player record |
+| GET  | `/api/players/{id}/history?last_n=5` | Per-GW history for a player |
+| GET  | `/api/fixtures?gw=15` | Fixtures for a GW (or all) |
+| POST | `/api/admin/update` | Trigger pipeline in the background |
+| POST | `/api/admin/update/sync` | Sync update, returns result |
+| GET  | `/api/admin/status` | Last update + row counts per table |
 
-## Primer
+## Example
 
 ```bash
 curl 'http://localhost:8000/api/players?position=MID&max_cost=10.0&limit=10'
 curl 'http://localhost:8000/api/admin/status'
 ```
 
-## Struktura
+## Layout
 
 ```
 fpl_insights/
-  config.py              # putanje, URL-ovi
+  config.py              # paths, URLs
   db/                    # SQLite schema + read queries
   pipeline/              # fetch -> normalize -> load
   api/                   # FastAPI app + routers
@@ -63,12 +63,12 @@ tests/                   # pytest, real in-memory SQLite
 
 ## Roadmap
 
-| Faza | Šta donosi |
+| Phase | What it adds |
 |---|---|
 | v1 (now) | Pipeline + read API |
-| v2 | Predikcije: player model + Monte Carlo (`/api/predictions/{gw}`) |
-| v3 | Analiza mog tima + privatne lige + rivali |
+| v2 | Predictions: player model + Monte Carlo (`/api/predictions/{gw}`) |
+| v3 | My-team analysis + private leagues + rivals |
 | v4 | Telegram bot |
-| v5 | AI sloj (opcioni) |
+| v5 | AI layer (optional) |
 
-Detalji u `CLAUDE.md`.
+Details in `CLAUDE.md`.
