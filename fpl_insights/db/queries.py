@@ -179,6 +179,26 @@ def get_fixtures(gw: Optional[int] = None) -> List[Dict[str, Any]]:
     return [dict(r) for r in rows]
 
 
+def set_meta(key: str, value: str) -> None:
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute(
+        "INSERT OR REPLACE INTO meta (key, value) VALUES (?, ?)",
+        (key, value),
+    )
+    conn.commit()
+    conn.close()
+
+
+def get_meta(key: str) -> Optional[str]:
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute("SELECT value FROM meta WHERE key = ?", (key,))
+    row = cur.fetchone()
+    conn.close()
+    return row["value"] if row else None
+
+
 def get_table_counts() -> Dict[str, int]:
     tables = ["teams", "players", "events", "fixtures", "player_history"]
     conn = get_connection()

@@ -7,6 +7,7 @@ DB_PATH = ROOT_DIR / "fpl.db"
 DATA_DIR = ROOT_DIR / "data"
 RAW_DIR = DATA_DIR / "raw"
 PLAYERS_RAW_DIR = RAW_DIR / "players"
+ARCHIVE_DIR = DATA_DIR / "archive"
 LAST_UPDATE_FILE = DATA_DIR / "last_update.json"
 
 FPL_API_BASE = "https://fantasy.premierleague.com/api"
