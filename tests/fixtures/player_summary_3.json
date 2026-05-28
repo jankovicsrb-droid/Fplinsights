@@ -1,0 +1,24 @@
+{
+  "history": [
+    {
+      "round": 15, "minutes": 90, "total_points": 7,
+      "goals_scored": 0, "assists": 0, "clean_sheets": 1,
+      "starts": 1, "bps": 28,
+      "ict_index": "5.0", "influence": "30.0", "creativity": "0.0", "threat": "0.0",
+      "expected_goal_involvements": "0.0", "expected_goals_conceded": "0.9",
+      "defensive_contribution": 0, "recoveries": 1, "tackles": 0,
+      "clearances_blocks_interceptions": 0,
+      "penalties_missed": 0, "penalties_saved": 1,
+      "yellow_cards": 0, "red_cards": 0,
+      "selected": 1500000, "transfers_balance": 3000, "value": 55,
+      "fixture": 101, "opponent_team": 2,
+      "team_h_score": 2, "team_a_score": 1, "was_home": true,
+      "bonus": 2,
+      "expected_goals": "0.0", "expected_assists": "0.0",
+      "transfers_in": 5000, "transfers_out": 2000,
+      "modified": null, "kickoff_time": "2026-01-04T15:00:00Z"
+    }
+  ],
+  "fixtures": [],
+  "history_past": []
+}

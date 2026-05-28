@@ -1,0 +1,32 @@
+[
+  {
+    "id": 101, "event": 15,
+    "team_h": 1, "team_a": 2,
+    "team_h_score": 2, "team_a_score": 1,
+    "team_h_difficulty": 2, "team_a_difficulty": 4,
+    "finished": true, "started": true,
+    "kickoff_time": "2026-01-04T15:00:00Z",
+    "provisional_start_time": false,
+    "pulse_id": 9001
+  },
+  {
+    "id": 102, "event": 16,
+    "team_h": 2, "team_a": 1,
+    "team_h_score": null, "team_a_score": null,
+    "team_h_difficulty": 4, "team_a_difficulty": 3,
+    "finished": false, "started": false,
+    "kickoff_time": "2026-01-11T15:00:00Z",
+    "provisional_start_time": false,
+    "pulse_id": 9002
+  },
+  {
+    "id": 103, "event": 17,
+    "team_h": 1, "team_a": 2,
+    "team_h_score": null, "team_a_score": null,
+    "team_h_difficulty": 2, "team_a_difficulty": 4,
+    "finished": false, "started": false,
+    "kickoff_time": "2026-01-18T15:00:00Z",
+    "provisional_start_time": false,
+    "pulse_id": 9003
+  }
+]

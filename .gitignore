@@ -1,0 +1,39 @@
+# Env
+.env
+.env.local
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Virtual envs
+.venv/
+venv/
+env/
+
+# Data and DB
+fpl.db
+fpl.db-journal
+data/
+!data/.gitkeep
+
+# IDE
+.idea/
+.vscode/
+.DS_Store
+
+# Tooling
+.pytest_cache/
+.coverage
+.mypy_cache/
+.ruff_cache/
+
+# Claude
+.claude/

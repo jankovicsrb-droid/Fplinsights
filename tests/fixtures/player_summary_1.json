@@ -1,0 +1,70 @@
+{
+  "history": [
+    {
+      "round": 14, "minutes": 90, "total_points": 8,
+      "goals_scored": 1, "assists": 0, "clean_sheets": 0,
+      "starts": 1, "bps": 32,
+      "ict_index": "12.0", "influence": "45.0", "creativity": "30.0", "threat": "40.0",
+      "expected_goal_involvements": "0.9", "expected_goals_conceded": "0.8",
+      "defensive_contribution": 2, "recoveries": 4, "tackles": 1,
+      "clearances_blocks_interceptions": 0,
+      "penalties_missed": 0, "penalties_saved": 0,
+      "yellow_cards": 0, "red_cards": 0,
+      "selected": 5400000, "transfers_balance": 12000, "value": 100,
+      "fixture": 100, "opponent_team": 2,
+      "team_h_score": 2, "team_a_score": 0, "was_home": true,
+      "bonus": 2,
+      "expected_goals": "0.6", "expected_assists": "0.3",
+      "transfers_in": 30000, "transfers_out": 18000,
+      "modified": null, "kickoff_time": "2025-12-28T15:00:00Z"
+    },
+    {
+      "round": 15, "minutes": 90, "total_points": 10,
+      "goals_scored": 1, "assists": 1, "clean_sheets": 0,
+      "starts": 1, "bps": 36,
+      "ict_index": "13.5", "influence": "50.0", "creativity": "35.0", "threat": "50.0",
+      "expected_goal_involvements": "1.2", "expected_goals_conceded": "1.1",
+      "defensive_contribution": 1, "recoveries": 3, "tackles": 0,
+      "clearances_blocks_interceptions": 0,
+      "penalties_missed": 0, "penalties_saved": 0,
+      "yellow_cards": 0, "red_cards": 0,
+      "selected": 5450000, "transfers_balance": 50000, "value": 100,
+      "fixture": 101, "opponent_team": 2,
+      "team_h_score": 2, "team_a_score": 1, "was_home": true,
+      "bonus": 3,
+      "expected_goals": "0.7", "expected_assists": "0.5",
+      "transfers_in": 60000, "transfers_out": 10000,
+      "modified": null, "kickoff_time": "2026-01-04T15:00:00Z"
+    }
+  ],
+  "fixtures": [
+    {
+      "id": 102, "event": 16, "event_name": "Gameweek 16",
+      "difficulty": 3, "is_home": false,
+      "team_h": 2, "team_a": 1,
+      "team_h_score": null, "team_a_score": null,
+      "finished": false, "started": false, "minutes": 0,
+      "provisional_start_time": false,
+      "kickoff_time": "2026-01-11T15:00:00Z",
+      "code": 102
+    }
+  ],
+  "history_past": [
+    {
+      "season_name": "2024/25",
+      "total_points": 200, "starts": 35, "minutes": 3100,
+      "starts_per_90": "1.0", "clean_sheets": 14, "clean_sheets_per_90": "0.41",
+      "goals_scored": 15, "assists": 12,
+      "expected_goals": "13.5", "expected_assists": "10.4",
+      "expected_goal_involvements": "23.9", "expected_goals_conceded": "30.0",
+      "expected_goals_per_90": "0.39", "expected_assists_per_90": "0.30",
+      "expected_goal_involvements_per_90": "0.69",
+      "expected_goals_conceded_per_90": "0.87",
+      "influence": "1200", "creativity": "1100", "threat": "950", "ict_index": "325",
+      "bps": 920, "bonus": 25, "yellow_cards": 3, "red_cards": 0, "saves": 0,
+      "penalties_saved": 0, "penalties_missed": 1, "recoveries": 80, "tackles": 30,
+      "defensive_contribution": 25, "clearances_blocks_interceptions": 20,
+      "start_cost": 95, "end_cost": 100, "element_code": 3
+    }
+  ]
+}
